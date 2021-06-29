@@ -158,7 +158,7 @@ data_assets:
     <<: *customer-contracts # here we're referencing the above created asset as base and just overwrite few values
     id: customer-accounts
     description: Customer Accounts (including transient credentials when entered for checking them)
-    confidentiality: strictly-confidential # values: public, internal, restricted, confidential, strictly-confidential
+    confidentiality: sensitive # values: public, internal, restricted, confidential, strictly-confidential
     availability: critical # values: archive, operational, important, critical, mission-critical
     justification_cia_rating: >
       Customer account data for using the portal are required to be available to offer the portal functionality.
@@ -172,7 +172,7 @@ data_assets:
     origin: Company XYZ
     owner: Company XYZ
     quantity: few # values: very-few, few, many, very-many
-    confidentiality: strictly-confidential # values: public, internal, restricted, confidential, strictly-confidential
+    confidentiality: sensitive # values: public, internal, restricted, confidential, strictly-confidential
     integrity: critical # values: archive, operational, important, critical, mission-critical
     availability: critical # values: archive, operational, important, critical, mission-critical
     justification_cia_rating: >
@@ -200,7 +200,7 @@ data_assets:
     <<: *client-application-code # here we're referencing the above created asset as base and just overwrite few values
     id: server-application-code
     description: API and other server-side code of the application.
-    confidentiality: internal # values: public, internal, restricted, confidential, strictly-confidential
+    confidentiality: confidential # values: public, internal, restricted, confidential, strictly-confidential
     integrity: mission-critical # values: archive, operational, important, critical, mission-critical
     availability: important # values: archive, operational, important, critical, mission-critical
     justification_cia_rating: >
@@ -270,7 +270,7 @@ data_assets:
     origin: Company XYZ
     owner: Company XYZ
     quantity: very-few # values: very-few, few, many, very-many
-    confidentiality: strictly-confidential # values: public, internal, restricted, confidential, strictly-confidential
+    confidentiality: sensitive # values: public, internal, restricted, confidential, strictly-confidential
     integrity: critical # values: archive, operational, important, critical, mission-critical
     availability: critical # values: archive, operational, important, critical, mission-critical
     justification_cia_rating: >
@@ -299,7 +299,7 @@ technical_assets:
     machine: physical # values: physical, virtual, container, serverless
     encryption: none # values: none, transparent, data-with-symmetric-shared-key, data-with-asymmetric-shared-key, data-with-enduser-individual-key
     owner: Customer
-    confidentiality: internal # values: public, internal, restricted, confidential, strictly-confidential
+    confidentiality: confidential # values: public, internal, restricted, confidential, strictly-confidential
     integrity: operational # values: archive, operational, important, critical, mission-critical
     availability: operational # values: archive, operational, important, critical, mission-critical
     justification_cia_rating: >
@@ -425,7 +425,7 @@ technical_assets:
     machine: physical # values: physical, virtual, container, serverless
     encryption: none # values: none, transparent, data-with-symmetric-shared-key, data-with-asymmetric-shared-key, data-with-enduser-individual-key
     owner: Company XYZ
-    confidentiality: internal # values: public, internal, restricted, confidential, strictly-confidential
+    confidentiality: confidential # values: public, internal, restricted, confidential, strictly-confidential
     integrity: operational # values: archive, operational, important, critical, mission-critical
     availability: operational # values: archive, operational, important, critical, mission-critical
     justification_cia_rating: >
@@ -510,7 +510,7 @@ technical_assets:
     machine: physical # values: physical, virtual, container, serverless
     encryption: none # values: none, transparent, data-with-symmetric-shared-key, data-with-asymmetric-shared-key, data-with-enduser-individual-key
     owner: Company ABC
-    confidentiality: internal # values: public, internal, restricted, confidential, strictly-confidential
+    confidentiality: confidential # values: public, internal, restricted, confidential, strictly-confidential
     integrity: mission-critical # values: archive, operational, important, critical, mission-critical
     availability: mission-critical # values: archive, operational, important, critical, mission-critical
     justification_cia_rating: >
@@ -587,7 +587,7 @@ technical_assets:
     machine: container # values: physical, virtual, container, serverless
     encryption: none # values: none, transparent, data-with-symmetric-shared-key, data-with-asymmetric-shared-key, data-with-enduser-individual-key
     owner: Company ABC
-    confidentiality: internal # values: public, internal, restricted, confidential, strictly-confidential
+    confidentiality: confidential # values: public, internal, restricted, confidential, strictly-confidential
     integrity: critical # values: archive, operational, important, critical, mission-critical
     availability: critical # values: archive, operational, important, critical, mission-critical
     justification_cia_rating: >
@@ -745,7 +745,7 @@ technical_assets:
     machine: container # values: physical, virtual, container, serverless
     encryption: none # values: none, transparent, data-with-symmetric-shared-key, data-with-asymmetric-shared-key, data-with-enduser-individual-key
     owner: Company ABC
-    confidentiality: internal # values: public, internal, restricted, confidential, strictly-confidential
+    confidentiality: confidential # values: public, internal, restricted, confidential, strictly-confidential
     integrity: important # values: archive, operational, important, critical, mission-critical
     availability: important # values: archive, operational, important, critical, mission-critical
     justification_cia_rating: >
@@ -796,7 +796,7 @@ technical_assets:
     machine: virtual # values: physical, virtual, container, serverless
     encryption: none # values: none, transparent, data-with-symmetric-shared-key, data-with-asymmetric-shared-key, data-with-enduser-individual-key
     owner: Company ABC
-    confidentiality: strictly-confidential # values: public, internal, restricted, confidential, strictly-confidential
+    confidentiality: sensitive # values: public, internal, restricted, confidential, strictly-confidential
     integrity: mission-critical # values: archive, operational, important, critical, mission-critical
     availability: mission-critical # values: archive, operational, important, critical, mission-critical
     justification_cia_rating: >
@@ -913,7 +913,7 @@ technical_assets:
     machine: virtual # values: physical, virtual, container, serverless
     encryption: data-with-symmetric-shared-key # values: none, transparent, data-with-symmetric-shared-key, data-with-asymmetric-shared-key, data-with-enduser-individual-key
     owner: Company ABC
-    confidentiality: strictly-confidential # values: public, internal, restricted, confidential, strictly-confidential
+    confidentiality: sensitive # values: public, internal, restricted, confidential, strictly-confidential
     integrity: mission-critical # values: archive, operational, important, critical, mission-critical
     availability: mission-critical # values: archive, operational, important, critical, mission-critical
     justification_cia_rating: >

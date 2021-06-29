@@ -50,9 +50,9 @@ func createRisk(technicalAsset model.TechnicalAsset, incomingFlows []model.Commu
 
 	for _, incomingFlow := range incomingFlows {
 		caller := model.ParsedModelRoot.TechnicalAssets[incomingFlow.SourceId]
-		if technicalAsset.HighestConfidentiality() == model.StrictlyConfidential || technicalAsset.HighestIntegrity() == model.MissionCritical || technicalAsset.HighestAvailability() == model.MissionCritical ||
-			caller.HighestConfidentiality() == model.StrictlyConfidential || caller.HighestIntegrity() == model.MissionCritical || caller.HighestAvailability() == model.MissionCritical ||
-			incomingFlow.HighestConfidentiality() == model.StrictlyConfidential || incomingFlow.HighestIntegrity() == model.MissionCritical || incomingFlow.HighestAvailability() == model.MissionCritical {
+		if technicalAsset.HighestConfidentiality() == model.Sensitive || technicalAsset.HighestIntegrity() == model.MissionCritical || technicalAsset.HighestAvailability() == model.MissionCritical ||
+			caller.HighestConfidentiality() == model.Sensitive || caller.HighestIntegrity() == model.MissionCritical || caller.HighestAvailability() == model.MissionCritical ||
+			incomingFlow.HighestConfidentiality() == model.Sensitive || incomingFlow.HighestIntegrity() == model.MissionCritical || incomingFlow.HighestAvailability() == model.MissionCritical {
 			impact = model.MediumImpact
 			break
 		}

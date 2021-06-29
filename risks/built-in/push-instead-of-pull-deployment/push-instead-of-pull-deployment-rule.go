@@ -44,7 +44,7 @@ func GenerateRisks() []model.Risk {
 				targetAsset := model.ParsedModelRoot.TechnicalAssets[deploymentLink.TargetId]
 				if !deploymentLink.Readonly && deploymentLink.Usage == model.DevOps &&
 					!targetAsset.OutOfScope && !targetAsset.Technology.IsDevelopmentRelevant() && targetAsset.Usage == model.Business {
-					if targetAsset.HighestConfidentiality() >= model.Confidential ||
+					if targetAsset.HighestConfidentiality() >= model.Restricted ||
 						targetAsset.HighestIntegrity() >= model.Critical ||
 						targetAsset.HighestAvailability() >= model.Critical {
 						impact = model.MediumImpact

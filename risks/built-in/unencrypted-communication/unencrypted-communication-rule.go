@@ -88,7 +88,7 @@ func createRisk(technicalAsset model.TechnicalAsset, dataFlow model.Communicatio
 	}
 	if dataFlow.VPN {
 		title += " (even VPN-protected connections need to encrypt their data in-transit when confidentiality is " +
-			"rated " + model.StrictlyConfidential.String() + " or integrity is rated " + model.MissionCritical.String() + ")"
+			"rated " + model.Sensitive.String() + " or integrity is rated " + model.MissionCritical.String() + ")"
 	}
 	likelihood := model.Unlikely
 	if dataFlow.IsAcrossTrustBoundaryNetworkOnly() {
@@ -110,9 +110,9 @@ func createRisk(technicalAsset model.TechnicalAsset, dataFlow model.Communicatio
 }
 
 func isHighSensitivity(dataAsset model.DataAsset) bool {
-	return dataAsset.Confidentiality == model.StrictlyConfidential || dataAsset.Integrity == model.MissionCritical
+	return dataAsset.Confidentiality == model.Sensitive || dataAsset.Integrity == model.MissionCritical
 }
 
 func isMediumSensitivity(dataAsset model.DataAsset) bool {
-	return dataAsset.Confidentiality == model.Confidential || dataAsset.Integrity == model.Critical
+	return dataAsset.Confidentiality == model.Restricted || dataAsset.Integrity == model.Critical
 }

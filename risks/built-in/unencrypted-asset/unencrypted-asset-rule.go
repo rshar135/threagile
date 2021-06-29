@@ -21,8 +21,8 @@ func Category() model.RiskCategory {
 		DetectionLogic: "In-scope unencrypted technical assets (excluding " + model.ReverseProxy.String() +
 			", " + model.LoadBalancer.String() + ", " + model.WAF.String() + ", " + model.IDS.String() +
 			", " + model.IPS.String() + " and embedded components like " + model.Library.String() + ") " +
-			"storing data assets rated at least as " + model.Confidential.String() + " or " + model.Critical.String() + ". " +
-			"For technical assets storing data assets rated as " + model.StrictlyConfidential.String() + " or " + model.MissionCritical.String() + " the " +
+			"storing data assets rated at least as " + model.Restricted.String() + " or " + model.Critical.String() + ". " +
+			"For technical assets storing data assets rated as " + model.Sensitive.String() + " or " + model.MissionCritical.String() + " the " +
 			"encryption must be of type " + model.DataWithEnduserIndividualKey.String() + ".",
 		RiskAssessment:             "Depending on the confidentiality rating of the stored data-assets either medium or high risk.",
 		FalsePositives:             "When all sensitive data stored within the asset is already fully encrypted on document or data level.",
@@ -41,9 +41,9 @@ func GenerateRisks() []model.Risk {
 	for _, id := range model.SortedTechnicalAssetIDs() {
 		technicalAsset := model.ParsedModelRoot.TechnicalAssets[id]
 		if !technicalAsset.OutOfScope && !IsEncryptionWaiver(technicalAsset) &&
-			(technicalAsset.HighestConfidentiality() >= model.Confidential ||
+			(technicalAsset.HighestConfidentiality() >= model.Restricted ||
 				technicalAsset.HighestIntegrity() >= model.Critical) {
-			verySensitive := technicalAsset.HighestConfidentiality() == model.StrictlyConfidential ||
+			verySensitive := technicalAsset.HighestConfidentiality() == model.Sensitive ||
 				technicalAsset.HighestIntegrity() == model.MissionCritical
 			requiresEnduserKey := verySensitive && technicalAsset.Technology.IsUsuallyStoringEnduserData()
 			if technicalAsset.Encryption == model.NoneEncryption {

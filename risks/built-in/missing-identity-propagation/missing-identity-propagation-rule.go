@@ -47,7 +47,7 @@ func GenerateRisks() []model.Risk {
 			continue
 		}
 		if technicalAsset.Technology.IsUsuallyProcessingEnduserRequests() &&
-			(technicalAsset.Confidentiality >= model.Confidential ||
+			(technicalAsset.Confidentiality >= model.Restricted ||
 				technicalAsset.Integrity >= model.Critical ||
 				technicalAsset.Availability >= model.Critical ||
 				(technicalAsset.MultiTenant &&
@@ -66,7 +66,7 @@ func GenerateRisks() []model.Risk {
 					if commLink.Usage == model.DevOps && commLink.Authorization != model.NoneAuthorization {
 						continue
 					}
-					highRisk := technicalAsset.Confidentiality == model.StrictlyConfidential ||
+					highRisk := technicalAsset.Confidentiality == model.Sensitive ||
 						technicalAsset.Integrity == model.MissionCritical ||
 						technicalAsset.Availability == model.MissionCritical
 					risks = append(risks, createRisk(technicalAsset, commLink, highRisk))

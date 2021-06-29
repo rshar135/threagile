@@ -296,7 +296,7 @@ func applyChange(modelInput *model.ModelInput, changeLogCollector *[]string, dry
 			Origin:          "",
 			Owner:           owner,
 			Quantity:        model.Few.String(),
-			Confidentiality: model.Confidential.String(),
+			Confidentiality: model.Restricted.String(),
 			Integrity:       model.Critical.String(),
 			Availability:    model.Important.String(),
 			Justification_cia_rating: "Sourcecode is at least rated as 'critical' in terms of integrity, because any " +
@@ -318,7 +318,7 @@ func applyChange(modelInput *model.ModelInput, changeLogCollector *[]string, dry
 			Origin:          "",
 			Owner:           owner,
 			Quantity:        model.VeryFew.String(),
-			Confidentiality: model.Confidential.String(),
+			Confidentiality: model.Restricted.String(),
 			Integrity:       model.Critical.String(),
 			Availability:    model.Important.String(),
 			Justification_cia_rating: "Deployment units are at least rated as 'critical' in terms of integrity, because any " +
@@ -455,7 +455,7 @@ func applyChange(modelInput *model.ModelInput, changeLogCollector *[]string, dry
 			Machine:                    model.Physical.String(),
 			Encryption:                 encryption,
 			Owner:                      owner,
-			Confidentiality:            model.Confidential.String(),
+			Confidentiality:            model.Restricted.String(),
 			Integrity:                  model.Critical.String(),
 			Availability:               model.Important.String(),
 			Justification_cia_rating: "Sourcecode processing components are at least rated as 'critical' in terms of integrity, because any " +
@@ -497,7 +497,7 @@ func applyChange(modelInput *model.ModelInput, changeLogCollector *[]string, dry
 			Machine:                    model.Virtual.String(),
 			Encryption:                 encryption,
 			Owner:                      owner,
-			Confidentiality:            model.Confidential.String(),
+			Confidentiality:            model.Restricted.String(),
 			Integrity:                  model.Critical.String(),
 			Availability:               model.Important.String(),
 			Justification_cia_rating: "Sourcecode processing components are at least rated as 'critical' in terms of integrity, because any " +
@@ -540,7 +540,7 @@ func applyChange(modelInput *model.ModelInput, changeLogCollector *[]string, dry
 				Machine:                    model.Virtual.String(),
 				Encryption:                 encryption,
 				Owner:                      owner,
-				Confidentiality:            model.Confidential.String(),
+				Confidentiality:            model.Restricted.String(),
 				Integrity:                  model.Critical.String(),
 				Availability:               model.Important.String(),
 				Justification_cia_rating: "Container registry components are at least rated as 'critical' in terms of integrity, because any " +
@@ -582,7 +582,7 @@ func applyChange(modelInput *model.ModelInput, changeLogCollector *[]string, dry
 				Machine:                    model.Virtual.String(),
 				Encryption:                 encryption,
 				Owner:                      owner,
-				Confidentiality:            model.Confidential.String(),
+				Confidentiality:            model.Restricted.String(),
 				Integrity:                  model.MissionCritical.String(),
 				Availability:               model.MissionCritical.String(),
 				Justification_cia_rating: "Container platform components are rated as 'mission-critical' in terms of integrity and availability, because any " +
@@ -836,7 +836,7 @@ func applyChange(modelInput *model.ModelInput, changeLogCollector *[]string, dry
 			Machine:                    model.Virtual.String(),
 			Encryption:                 encryption,
 			Owner:                      owner,
-			Confidentiality:            model.Confidential.String(),
+			Confidentiality:            model.Restricted.String(),
 			Integrity:                  model.Critical.String(),
 			Availability:               model.Important.String(),
 			Justification_cia_rating: "Build pipeline components are at least rated as 'critical' in terms of integrity, because any " +
@@ -878,7 +878,7 @@ func applyChange(modelInput *model.ModelInput, changeLogCollector *[]string, dry
 			Machine:                    model.Virtual.String(),
 			Encryption:                 encryption,
 			Owner:                      owner,
-			Confidentiality:            model.Confidential.String(),
+			Confidentiality:            model.Restricted.String(),
 			Integrity:                  model.Critical.String(),
 			Availability:               model.Important.String(),
 			Justification_cia_rating: "Artifact registry components are at least rated as 'critical' in terms of integrity, because any " +
@@ -921,7 +921,7 @@ func applyChange(modelInput *model.ModelInput, changeLogCollector *[]string, dry
 				Machine:                    model.Virtual.String(),
 				Encryption:                 encryption,
 				Owner:                      owner,
-				Confidentiality:            model.Confidential.String(),
+				Confidentiality:            model.Restricted.String(),
 				Integrity:                  model.Important.String(),
 				Availability:               model.Operational.String(),
 				Justification_cia_rating: "Sourcecode inspection platforms are rated at least 'important' in terms of integrity, because any " +

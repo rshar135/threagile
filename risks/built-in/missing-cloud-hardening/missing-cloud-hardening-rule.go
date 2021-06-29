@@ -365,12 +365,12 @@ func createRiskForSharedRuntime(sharedRuntime model.SharedRuntime, prefix, detai
 		title += ": <u>" + details + "</u>"
 	}
 	impact := model.MediumImpact
-	if sharedRuntime.HighestConfidentiality() >= model.Confidential ||
+	if sharedRuntime.HighestConfidentiality() >= model.Restricted ||
 		sharedRuntime.HighestIntegrity() >= model.Critical ||
 		sharedRuntime.HighestAvailability() >= model.Critical {
 		impact = model.HighImpact
 	}
-	if sharedRuntime.HighestConfidentiality() == model.StrictlyConfidential ||
+	if sharedRuntime.HighestConfidentiality() == model.Sensitive ||
 		sharedRuntime.HighestIntegrity() == model.MissionCritical ||
 		sharedRuntime.HighestAvailability() == model.MissionCritical {
 		impact = model.VeryHighImpact
@@ -399,12 +399,12 @@ func createRiskForTrustBoundary(trustBoundary model.TrustBoundary, prefix, detai
 		title += ": <u>" + details + "</u>"
 	}
 	impact := model.MediumImpact
-	if trustBoundary.HighestConfidentiality() >= model.Confidential ||
+	if trustBoundary.HighestConfidentiality() >= model.Restricted ||
 		trustBoundary.HighestIntegrity() >= model.Critical ||
 		trustBoundary.HighestAvailability() >= model.Critical {
 		impact = model.HighImpact
 	}
-	if trustBoundary.HighestConfidentiality() == model.StrictlyConfidential ||
+	if trustBoundary.HighestConfidentiality() == model.Sensitive ||
 		trustBoundary.HighestIntegrity() == model.MissionCritical ||
 		trustBoundary.HighestAvailability() == model.MissionCritical {
 		impact = model.VeryHighImpact
@@ -433,12 +433,12 @@ func createRiskForTechnicalAsset(technicalAsset model.TechnicalAsset, prefix, de
 		title += ": <u>" + details + "</u>"
 	}
 	impact := model.MediumImpact
-	if technicalAsset.HighestConfidentiality() >= model.Confidential ||
+	if technicalAsset.HighestConfidentiality() >= model.Restricted ||
 		technicalAsset.HighestIntegrity() >= model.Critical ||
 		technicalAsset.HighestAvailability() >= model.Critical {
 		impact = model.HighImpact
 	}
-	if technicalAsset.HighestConfidentiality() == model.StrictlyConfidential ||
+	if technicalAsset.HighestConfidentiality() == model.Sensitive ||
 		technicalAsset.HighestIntegrity() == model.MissionCritical ||
 		technicalAsset.HighestAvailability() == model.MissionCritical {
 		impact = model.VeryHighImpact

@@ -95,7 +95,7 @@ func createRisk(sharedRuntime model.SharedRuntime) model.Risk {
 func isMoreRisky(sharedRuntime model.SharedRuntime) bool {
 	for _, techAssetId := range sharedRuntime.TechnicalAssetsRunning {
 		techAsset := model.ParsedModelRoot.TechnicalAssets[techAssetId]
-		if techAsset.Confidentiality == model.StrictlyConfidential || techAsset.Integrity == model.MissionCritical ||
+		if techAsset.Confidentiality == model.Sensitive || techAsset.Integrity == model.MissionCritical ||
 			techAsset.Availability == model.MissionCritical {
 			return true
 		}

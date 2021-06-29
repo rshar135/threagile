@@ -53,7 +53,7 @@ func GenerateRisks() []model.Risk {
 func createRisk(technicalAsset model.TechnicalAsset) model.Risk {
 	title := "<b>XML External Entity (XXE)</b> risk at <b>" + technicalAsset.Title + "</b>"
 	impact := model.MediumImpact
-	if technicalAsset.HighestConfidentiality() == model.StrictlyConfidential ||
+	if technicalAsset.HighestConfidentiality() == model.Sensitive ||
 		technicalAsset.HighestIntegrity() == model.MissionCritical ||
 		technicalAsset.HighestAvailability() == model.MissionCritical {
 		impact = model.HighImpact

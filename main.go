@@ -3563,7 +3563,7 @@ func deleteKey(context *gin.Context) {
 }
 
 func parseCommandlineArgs() {
-	modelFilename = flag.String("model", "threagile.yaml", "input model yaml file")
+	modelFilename = flag.String("model", "demo/example/threagile.yaml", "input model yaml file")
 	outputDir = flag.String("output", ".", "output directory")
 	raaPlugin = flag.String("raa-plugin", "raa.so", "RAA calculation plugin (.so shared object) file name")
 	executeModelMacro = flag.String("execute-model-macro", "", "Execute model macro (by ID)")
@@ -4009,14 +4009,12 @@ func parseModel(inputFilename string) {
 			switch asset.Confidentiality {
 			case model.Public.String():
 				confidentiality = model.Public
-			case model.Internal.String():
-				confidentiality = model.Internal
-			case model.Restricted.String():
-				confidentiality = model.Restricted
 			case model.Confidential.String():
 				confidentiality = model.Confidential
-			case model.StrictlyConfidential.String():
-				confidentiality = model.StrictlyConfidential
+			case model.Restricted.String():
+				confidentiality = model.Restricted
+			case model.Sensitive.String():
+				confidentiality = model.Sensitive
 			default:
 				panic(errors.New("unknown 'confidentiality' value of data asset '" + title + "': " + asset.Confidentiality))
 			}
@@ -4288,14 +4286,12 @@ func parseModel(inputFilename string) {
 			switch asset.Confidentiality {
 			case model.Public.String():
 				confidentiality = model.Public
-			case model.Internal.String():
-				confidentiality = model.Internal
-			case model.Restricted.String():
-				confidentiality = model.Restricted
 			case model.Confidential.String():
 				confidentiality = model.Confidential
-			case model.StrictlyConfidential.String():
-				confidentiality = model.StrictlyConfidential
+			case model.Restricted.String():
+				confidentiality = model.Restricted
+			case model.Sensitive.String():
+				confidentiality = model.Sensitive
 			default:
 				panic(errors.New("unknown 'confidentiality' value of technical asset '" + title + "': " + fmt.Sprintf("%v", asset.Confidentiality)))
 			}

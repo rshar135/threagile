@@ -43,7 +43,7 @@ func GenerateRisks() []model.Risk {
 			technicalAsset.Technology.IsUnprotectedCommsTolerated() {
 			continue
 		}
-		if technicalAsset.HighestConfidentiality() >= model.Confidential ||
+		if technicalAsset.HighestConfidentiality() >= model.Restricted ||
 			technicalAsset.HighestIntegrity() >= model.Critical ||
 			technicalAsset.HighestAvailability() >= model.Critical ||
 			technicalAsset.MultiTenant {
@@ -55,7 +55,7 @@ func GenerateRisks() []model.Risk {
 					continue
 				}
 				if caller.UsedAsClientByHuman {
-					moreRisky := commLink.HighestConfidentiality() >= model.Confidential ||
+					moreRisky := commLink.HighestConfidentiality() >= model.Restricted ||
 						commLink.HighestIntegrity() >= model.Critical
 					if moreRisky && commLink.Authentication != model.TwoFactor {
 						risks = append(risks, missing_authentication.CreateRisk(technicalAsset, commLink, commLink, "", model.MediumImpact, model.Unlikely, true, Category()))
@@ -69,7 +69,7 @@ func GenerateRisks() []model.Risk {
 							continue
 						}
 						if callersCaller.UsedAsClientByHuman {
-							moreRisky := callersCommLink.HighestConfidentiality() >= model.Confidential ||
+							moreRisky := callersCommLink.HighestConfidentiality() >= model.Restricted ||
 								callersCommLink.HighestIntegrity() >= model.Critical
 							if moreRisky && callersCommLink.Authentication != model.TwoFactor {
 								risks = append(risks, missing_authentication.CreateRisk(technicalAsset, commLink, callersCommLink, caller.Title, model.MediumImpact, model.Unlikely, true, Category()))

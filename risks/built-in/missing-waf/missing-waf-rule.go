@@ -55,7 +55,7 @@ func createRisk(technicalAsset model.TechnicalAsset) model.Risk {
 	title := "<b>Missing Web Application Firewall (WAF)</b> risk at <b>" + technicalAsset.Title + "</b>"
 	likelihood := model.Unlikely
 	impact := model.LowImpact
-	if technicalAsset.HighestConfidentiality() == model.StrictlyConfidential ||
+	if technicalAsset.HighestConfidentiality() == model.Sensitive ||
 		technicalAsset.HighestIntegrity() == model.MissionCritical ||
 		technicalAsset.HighestAvailability() == model.MissionCritical {
 		impact = model.MediumImpact

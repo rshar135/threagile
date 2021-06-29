@@ -23,7 +23,7 @@ func Category() model.RiskCategory {
 			"when surrounded by other (not identity-related) assets (without a network trust-boundary in-between). " +
 			"This risk is especially prevalent when other non-identity related assets are within the same execution environment (i.e. same database or same application server).",
 		RiskAssessment: "Default is " + model.HighImpact.String() + " impact. The impact is increased to " + model.VeryHighImpact.String() + " when the asset missing the " +
-			"trust-boundary protection is rated as " + model.StrictlyConfidential.String() + " or " + model.MissionCritical.String() + ".",
+			"trust-boundary protection is rated as " + model.Sensitive.String() + " or " + model.MissionCritical.String() + ".",
 		FalsePositives: "When all assets within the network segmentation trust-boundary are hardened and protected to the same extend as if all were " +
 			"identity providers with data of highest sensitivity.",
 		ModelFailurePossibleReason: false,
@@ -39,7 +39,7 @@ func GenerateRisks() []model.Risk {
 	risks := make([]model.Risk, 0)
 	for _, technicalAsset := range model.ParsedModelRoot.TechnicalAssets {
 		if !technicalAsset.OutOfScope && technicalAsset.Technology.IsIdentityRelated() {
-			moreImpact := technicalAsset.Confidentiality == model.StrictlyConfidential ||
+			moreImpact := technicalAsset.Confidentiality == model.Sensitive ||
 				technicalAsset.Integrity == model.MissionCritical ||
 				technicalAsset.Availability == model.MissionCritical
 			sameExecutionEnv := false

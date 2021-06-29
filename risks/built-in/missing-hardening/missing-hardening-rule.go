@@ -53,7 +53,7 @@ func GenerateRisks() []model.Risk {
 func createRisk(technicalAsset model.TechnicalAsset) model.Risk {
 	title := "<b>Missing Hardening</b> risk at <b>" + technicalAsset.Title + "</b>"
 	impact := model.LowImpact
-	if technicalAsset.HighestConfidentiality() == model.StrictlyConfidential || technicalAsset.HighestIntegrity() == model.MissionCritical {
+	if technicalAsset.HighestConfidentiality() == model.Sensitive || technicalAsset.HighestIntegrity() == model.MissionCritical {
 		impact = model.MediumImpact
 	}
 	risk := model.Risk{

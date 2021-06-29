@@ -62,7 +62,7 @@ func createRisk(technicalAsset model.TechnicalAsset, incomingFlow model.Communic
 	title := "<b>Path-Traversal</b> risk at <b>" + caller.Title + "</b> against filesystem <b>" + technicalAsset.Title + "</b>" +
 		" via <b>" + incomingFlow.Title + "</b>"
 	impact := model.MediumImpact
-	if technicalAsset.HighestConfidentiality() == model.StrictlyConfidential || technicalAsset.HighestIntegrity() == model.MissionCritical {
+	if technicalAsset.HighestConfidentiality() == model.Sensitive || technicalAsset.HighestIntegrity() == model.MissionCritical {
 		impact = model.HighImpact
 	}
 	risk := model.Risk{

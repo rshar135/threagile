@@ -188,7 +188,7 @@ func applyChange(modelInput *model.ModelInput, changeLogCollector *[]string, dry
 			Origin:                   "",
 			Owner:                    "",
 			Quantity:                 model.VeryFew.String(),
-			Confidentiality:          model.StrictlyConfidential.String(),
+			Confidentiality:          model.Sensitive.String(),
 			Integrity:                model.Critical.String(),
 			Availability:             model.Critical.String(),
 			Justification_cia_rating: "Configuration secrets are rated as being 'strictly-confidential'.",
@@ -227,7 +227,7 @@ func applyChange(modelInput *model.ModelInput, changeLogCollector *[]string, dry
 				Machine:                    model.Virtual.String(),                    // TODO: let user enter or too detailed for a wizard?
 				Encryption:                 model.DataWithSymmetricSharedKey.String(), // can be assumed for a vault product as at least having some good encryption
 				Owner:                      "",
-				Confidentiality:            model.Confidential.String(),
+				Confidentiality:            model.Restricted.String(),
 				Integrity:                  model.Critical.String(),
 				Availability:               model.Critical.String(),
 				Justification_cia_rating:   "Vault components are only rated as 'confidential' as vaults usually apply a trust barrier to encrypt all data-at-rest with a vault key.",
@@ -342,7 +342,7 @@ func applyChange(modelInput *model.ModelInput, changeLogCollector *[]string, dry
 			Machine:                    model.Virtual.String(),
 			Encryption:                 model.Transparent.String(),
 			Owner:                      "",
-			Confidentiality:            model.StrictlyConfidential.String(),
+			Confidentiality:            model.Sensitive.String(),
 			Integrity:                  model.Critical.String(),
 			Availability:               model.Critical.String(),
 			Justification_cia_rating:   "Vault components are rated as 'strictly-confidential'.",

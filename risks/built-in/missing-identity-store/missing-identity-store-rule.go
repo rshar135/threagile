@@ -54,13 +54,13 @@ func GenerateRisks() []model.Risk {
 				targetAsset := model.ParsedModelRoot.TechnicalAssets[commLink.TargetId]
 				if impact == model.LowImpact {
 					mostRelevantAsset = targetAsset
-					if targetAsset.HighestConfidentiality() >= model.Confidential ||
+					if targetAsset.HighestConfidentiality() >= model.Restricted ||
 						targetAsset.HighestIntegrity() >= model.Critical ||
 						targetAsset.HighestAvailability() >= model.Critical {
 						impact = model.MediumImpact
 					}
 				}
-				if targetAsset.Confidentiality >= model.Confidential ||
+				if targetAsset.Confidentiality >= model.Restricted ||
 					targetAsset.Integrity >= model.Critical ||
 					targetAsset.Availability >= model.Critical {
 					impact = model.MediumImpact

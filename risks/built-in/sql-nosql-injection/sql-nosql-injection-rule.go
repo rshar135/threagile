@@ -55,7 +55,7 @@ func createRisk(technicalAsset model.TechnicalAsset, incomingFlow model.Communic
 	title := "<b>SQL/NoSQL-Injection</b> risk at <b>" + caller.Title + "</b> against database <b>" + technicalAsset.Title + "</b>" +
 		" via <b>" + incomingFlow.Title + "</b>"
 	impact := model.MediumImpact
-	if technicalAsset.HighestConfidentiality() == model.StrictlyConfidential || technicalAsset.HighestIntegrity() == model.MissionCritical {
+	if technicalAsset.HighestConfidentiality() == model.Sensitive || technicalAsset.HighestIntegrity() == model.MissionCritical {
 		impact = model.HighImpact
 	}
 	likelihood := model.VeryLikely

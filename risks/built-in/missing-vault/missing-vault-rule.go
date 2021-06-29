@@ -44,12 +44,12 @@ func GenerateRisks() []model.Risk {
 		if techAsset.Technology == model.Vault {
 			hasVault = true
 		}
-		if techAsset.HighestConfidentiality() >= model.Confidential ||
+		if techAsset.HighestConfidentiality() >= model.Restricted ||
 			techAsset.HighestIntegrity() >= model.Critical ||
 			techAsset.HighestAvailability() >= model.Critical {
 			impact = model.MediumImpact
 		}
-		if techAsset.Confidentiality >= model.Confidential ||
+		if techAsset.Confidentiality >= model.Restricted ||
 			techAsset.Integrity >= model.Critical ||
 			techAsset.Availability >= model.Critical {
 			impact = model.MediumImpact

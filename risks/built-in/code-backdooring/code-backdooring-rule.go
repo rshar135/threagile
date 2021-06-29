@@ -73,7 +73,7 @@ func createRisk(technicalAsset model.TechnicalAsset, elevatedRisk bool) model.Ri
 		if elevatedRisk {
 			impact = model.MediumImpact
 		}
-		if technicalAsset.HighestConfidentiality() >= model.Confidential || technicalAsset.HighestIntegrity() >= model.Critical {
+		if technicalAsset.HighestConfidentiality() >= model.Restricted || technicalAsset.HighestIntegrity() >= model.Critical {
 			impact = model.MediumImpact
 			if elevatedRisk {
 				impact = model.HighImpact

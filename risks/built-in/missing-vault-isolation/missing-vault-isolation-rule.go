@@ -23,7 +23,7 @@ func Category() model.RiskCategory {
 			"when surrounded by other (not vault-related) assets (without a network trust-boundary in-between). " +
 			"This risk is especially prevalent when other non-vault related assets are within the same execution environment (i.e. same database or same application server).",
 		RiskAssessment: "Default is " + model.MediumImpact.String() + " impact. The impact is increased to " + model.HighImpact.String() + " when the asset missing the " +
-			"trust-boundary protection is rated as " + model.StrictlyConfidential.String() + " or " + model.MissionCritical.String() + ".",
+			"trust-boundary protection is rated as " + model.Sensitive.String() + " or " + model.MissionCritical.String() + ".",
 		FalsePositives: "When all assets within the network segmentation trust-boundary are hardened and protected to the same extend as if all were " +
 			"vaults with data of highest sensitivity.",
 		ModelFailurePossibleReason: false,
@@ -39,7 +39,7 @@ func GenerateRisks() []model.Risk {
 	risks := make([]model.Risk, 0)
 	for _, technicalAsset := range model.ParsedModelRoot.TechnicalAssets {
 		if !technicalAsset.OutOfScope && technicalAsset.Technology == model.Vault {
-			moreImpact := technicalAsset.Confidentiality == model.StrictlyConfidential ||
+			moreImpact := technicalAsset.Confidentiality == model.Sensitive ||
 				technicalAsset.Integrity == model.MissionCritical ||
 				technicalAsset.Availability == model.MissionCritical
 			sameExecutionEnv := false

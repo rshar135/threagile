@@ -60,7 +60,7 @@ func createRisk(technicalAsset model.TechnicalAsset) model.Risk {
 					// here we've got a deployment target which has its data assets at risk via deployment of backdoored code
 					uniqueDataBreachTechnicalAssetIDs[codeDeploymentTargetCommLink.TargetId] = true
 					targetTechAsset := model.ParsedModelRoot.TechnicalAssets[codeDeploymentTargetCommLink.TargetId]
-					if targetTechAsset.HighestConfidentiality() >= model.Confidential ||
+					if targetTechAsset.HighestConfidentiality() >= model.Restricted ||
 						targetTechAsset.HighestIntegrity() >= model.Critical ||
 						targetTechAsset.HighestAvailability() >= model.Critical {
 						impact = model.MediumImpact

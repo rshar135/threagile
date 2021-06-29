@@ -61,12 +61,12 @@ func createRisk(technicalAsset model.TechnicalAsset, prefix, details string) mod
 		title += ": <u>" + details + "</u>"
 	}
 	impact := model.LowImpact
-	if technicalAsset.HighestConfidentiality() >= model.Confidential ||
+	if technicalAsset.HighestConfidentiality() >= model.Restricted ||
 		technicalAsset.HighestIntegrity() >= model.Critical ||
 		technicalAsset.HighestAvailability() >= model.Critical {
 		impact = model.MediumImpact
 	}
-	if technicalAsset.HighestConfidentiality() == model.StrictlyConfidential ||
+	if technicalAsset.HighestConfidentiality() == model.Sensitive ||
 		technicalAsset.HighestIntegrity() == model.MissionCritical ||
 		technicalAsset.HighestAvailability() == model.MissionCritical {
 		impact = model.HighImpact

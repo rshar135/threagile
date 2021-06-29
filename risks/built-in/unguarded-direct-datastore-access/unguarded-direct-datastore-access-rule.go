@@ -18,10 +18,10 @@ func Category() model.RiskCategory {
 		Function:    model.Architecture,
 		STRIDE:      model.ElevationOfPrivilege,
 		DetectionLogic: "In-scope technical assets of type " + model.Datastore.String() + " (except " + model.IdentityStoreLDAP.String() + " when accessed from " + model.IdentityProvider.String() + " and " + model.FileServer.String() + " when accessed via file transfer protocols) with confidentiality rating " +
-			"of " + model.Confidential.String() + " (or higher) or with integrity rating of " + model.Critical.String() + " (or higher) " +
+			"of " + model.Restricted.String() + " (or higher) or with integrity rating of " + model.Critical.String() + " (or higher) " +
 			"which have incoming data-flows from assets outside across a network trust-boundary. DevOps config and deployment access is excluded from this risk.", // TODO new rule "missing bastion host"?
 		RiskAssessment: "The matching technical assets are at " + model.LowSeverity.String() + " risk. When either the " +
-			"confidentiality rating is " + model.StrictlyConfidential.String() + " or the integrity rating " +
+			"confidentiality rating is " + model.Sensitive.String() + " or the integrity rating " +
 			"is " + model.MissionCritical.String() + ", the risk-rating is considered " + model.MediumSeverity.String() + ". " +
 			"For assets with RAA values higher than 40 % the risk-rating increases.",
 		FalsePositives:             "When the caller is considered fully trusted as if it was part of the datastore itself.",
@@ -46,10 +46,10 @@ func GenerateRisks() []model.Risk {
 					sourceAsset.Technology == model.IdentityProvider {
 					continue
 				}
-				if technicalAsset.Confidentiality >= model.Confidential || technicalAsset.Integrity >= model.Critical {
+				if technicalAsset.Confidentiality >= model.Restricted || technicalAsset.Integrity >= model.Critical {
 					if incomingAccess.IsAcrossTrustBoundaryNetworkOnly() && !FileServerAccessViaFTP(technicalAsset, incomingAccess) &&
 						incomingAccess.Usage != model.DevOps && !model.IsSharingSameParentTrustBoundary(technicalAsset, sourceAsset) {
-						highRisk := technicalAsset.Confidentiality == model.StrictlyConfidential ||
+						highRisk := technicalAsset.Confidentiality == model.Sensitive ||
 							technicalAsset.Integrity == model.MissionCritical
 						risks = append(risks, createRisk(technicalAsset, incomingAccess,
 							model.ParsedModelRoot.TechnicalAssets[incomingAccess.SourceId], highRisk))

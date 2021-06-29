@@ -65,9 +65,9 @@ func createRisk(technicalAsset model.TechnicalAsset, incomingFlow model.Communic
 	title := "<b>Search Query Injection</b> risk at <b>" + caller.Title + "</b> against search engine server <b>" + technicalAsset.Title + "</b>" +
 		" via <b>" + incomingFlow.Title + "</b>"
 	impact := model.MediumImpact
-	if technicalAsset.HighestConfidentiality() == model.StrictlyConfidential || technicalAsset.HighestIntegrity() == model.MissionCritical {
+	if technicalAsset.HighestConfidentiality() == model.Sensitive || technicalAsset.HighestIntegrity() == model.MissionCritical {
 		impact = model.HighImpact
-	} else if technicalAsset.HighestConfidentiality() <= model.Internal && technicalAsset.HighestIntegrity() == model.Operational {
+	} else if technicalAsset.HighestConfidentiality() <= model.Confidential && technicalAsset.HighestIntegrity() == model.Operational {
 		impact = model.LowImpact
 	}
 	risk := model.Risk{

@@ -41,7 +41,7 @@ func GenerateRisks() []model.Risk {
 			technicalAsset.Technology == model.ReverseProxy || technicalAsset.Technology == model.ServiceRegistry || technicalAsset.Technology == model.WAF || technicalAsset.Technology == model.IDS || technicalAsset.Technology == model.IPS {
 			continue
 		}
-		if technicalAsset.HighestConfidentiality() >= model.Confidential ||
+		if technicalAsset.HighestConfidentiality() >= model.Restricted ||
 			technicalAsset.HighestIntegrity() >= model.Critical ||
 			technicalAsset.HighestAvailability() >= model.Critical ||
 			technicalAsset.MultiTenant {
@@ -52,9 +52,9 @@ func GenerateRisks() []model.Risk {
 				if caller.Technology.IsUnprotectedCommsTolerated() || caller.Type == model.Datastore {
 					continue
 				}
-				highRisk := commLink.HighestConfidentiality() == model.StrictlyConfidential ||
+				highRisk := commLink.HighestConfidentiality() == model.Sensitive ||
 					commLink.HighestIntegrity() == model.MissionCritical
-				lowRisk := commLink.HighestConfidentiality() <= model.Internal &&
+				lowRisk := commLink.HighestConfidentiality() <= model.Restricted &&
 					commLink.HighestIntegrity() == model.Operational
 				impact := model.MediumImpact
 				if highRisk {

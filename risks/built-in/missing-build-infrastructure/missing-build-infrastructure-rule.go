@@ -46,13 +46,13 @@ func GenerateRisks() []model.Risk {
 			hasCustomDevelopedParts = true
 			if impact == model.LowImpact {
 				mostRelevantAsset = technicalAsset
-				if technicalAsset.HighestConfidentiality() >= model.Confidential ||
+				if technicalAsset.HighestConfidentiality() >= model.Restricted ||
 					technicalAsset.HighestIntegrity() >= model.Critical ||
 					technicalAsset.HighestAvailability() >= model.Critical {
 					impact = model.MediumImpact
 				}
 			}
-			if technicalAsset.Confidentiality >= model.Confidential ||
+			if technicalAsset.Confidentiality >= model.Restricted ||
 				technicalAsset.Integrity >= model.Critical ||
 				technicalAsset.Availability >= model.Critical {
 				impact = model.MediumImpact

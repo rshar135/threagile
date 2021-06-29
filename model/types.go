@@ -11,8 +11,8 @@ import (
 	"time"
 )
 
-const ThreagileVersion = "1.0.0" // Also update into example and stub model files and openapi.yaml
-const TempFolder = "/dev/shm"    // TODO: make configurable via cmdline arg?
+const ThreagileVersion = "1.0.0"    // Also update into example and stub model files and openapi.yaml
+const TempFolder = "/demo/example/" // TODO: make configurable via cmdline arg?
 
 var ParsedModelRoot ParsedModel
 
@@ -264,19 +264,17 @@ type Confidentiality int
 
 const (
 	Public Confidentiality = iota
-	Internal
-	Restricted
 	Confidential
-	StrictlyConfidential
+	Restricted
+	Sensitive
 )
 
 func ConfidentialityValues() []TypeEnum {
 	return []TypeEnum{
 		Public,
-		Internal,
-		Restricted,
 		Confidential,
-		StrictlyConfidential,
+		Restricted,
+		Sensitive,
 	}
 }
 
@@ -292,7 +290,7 @@ func ParseConfidentiality(value string) (confidentiality Confidentiality, err er
 
 func (what Confidentiality) String() string {
 	// NOTE: maintain list also in schema.json for validation in IDEs
-	return [...]string{"public", "internal", "restricted", "confidential", "strictly-confidential"}[what]
+	return [...]string{"public", "confidential", "restricted", "sensitive"}[what]
 }
 
 func (what Confidentiality) AttackerAttractivenessForAsset() float64 {
@@ -313,19 +311,17 @@ func (what Confidentiality) RatingStringInScale() string {
 	if what == Public {
 		result += "1"
 	}
-	if what == Internal {
+	if what == Confidential {
 		result += "2"
 	}
 	if what == Restricted {
 		result += "3"
 	}
-	if what == Confidential {
+	if what == Sensitive {
 		result += "4"
 	}
-	if what == StrictlyConfidential {
-		result += "5"
-	}
-	result += " in scale of 5)"
+
+	result += " in scale of 4)"
 	return result
 }
 
@@ -2430,30 +2426,30 @@ func (what TechnicalAsset) DetermineLabelColor() string {
 func (what TechnicalAsset) DetermineShapeBorderColor() string {
 	// TODO: Just move into main.go and let the generated risk determine the color, don't duplicate the logic here
 	// Check for red
-	if what.Confidentiality == StrictlyConfidential {
+	if what.Confidentiality == Sensitive {
 		return colors.Red
 	}
 	for _, storedDataAsset := range what.DataAssetsStored {
-		if ParsedModelRoot.DataAssets[storedDataAsset].Confidentiality == StrictlyConfidential {
+		if ParsedModelRoot.DataAssets[storedDataAsset].Confidentiality == Sensitive {
 			return colors.Red
 		}
 	}
 	for _, processedDataAsset := range what.DataAssetsProcessed {
-		if ParsedModelRoot.DataAssets[processedDataAsset].Confidentiality == StrictlyConfidential {
+		if ParsedModelRoot.DataAssets[processedDataAsset].Confidentiality == Sensitive {
 			return colors.Red
 		}
 	}
 	// Check for amber
-	if what.Confidentiality == Confidential {
+	if what.Confidentiality == Restricted {
 		return colors.Amber
 	}
 	for _, storedDataAsset := range what.DataAssetsStored {
-		if ParsedModelRoot.DataAssets[storedDataAsset].Confidentiality == Confidential {
+		if ParsedModelRoot.DataAssets[storedDataAsset].Confidentiality == Restricted {
 			return colors.Amber
 		}
 	}
 	for _, processedDataAsset := range what.DataAssetsProcessed {
-		if ParsedModelRoot.DataAssets[processedDataAsset].Confidentiality == Confidential {
+		if ParsedModelRoot.DataAssets[processedDataAsset].Confidentiality == Restricted {
 			return colors.Amber
 		}
 	}
@@ -2532,23 +2528,23 @@ func (what CommunicationLink) DetermineArrowColor() string {
 	}
 	// check for red
 	for _, sentDataAsset := range what.DataAssetsSent {
-		if ParsedModelRoot.DataAssets[sentDataAsset].Confidentiality == StrictlyConfidential {
+		if ParsedModelRoot.DataAssets[sentDataAsset].Confidentiality == Sensitive {
 			return colors.Red
 		}
 	}
 	for _, receivedDataAsset := range what.DataAssetsReceived {
-		if ParsedModelRoot.DataAssets[receivedDataAsset].Confidentiality == StrictlyConfidential {
+		if ParsedModelRoot.DataAssets[receivedDataAsset].Confidentiality == Sensitive {
 			return colors.Red
 		}
 	}
 	// check for amber
 	for _, sentDataAsset := range what.DataAssetsSent {
-		if ParsedModelRoot.DataAssets[sentDataAsset].Confidentiality == Confidential {
+		if ParsedModelRoot.DataAssets[sentDataAsset].Confidentiality == Restricted {
 			return colors.Amber
 		}
 	}
 	for _, receivedDataAsset := range what.DataAssetsReceived {
-		if ParsedModelRoot.DataAssets[receivedDataAsset].Confidentiality == Confidential {
+		if ParsedModelRoot.DataAssets[receivedDataAsset].Confidentiality == Restricted {
 			return colors.Amber
 		}
 	}
